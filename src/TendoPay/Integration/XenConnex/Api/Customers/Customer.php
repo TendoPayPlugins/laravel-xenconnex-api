@@ -132,7 +132,7 @@ class Customer extends BaseFilter implements CustomerWithMobile, CustomerWithEma
 
     public function withMetadata($metadata): Customer
     {
-        $this->addFilter('kyc_documents', $metadata);
+        $this->addFilter('metadata', $metadata);
 
         return $this;
     }

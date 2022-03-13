@@ -21,9 +21,7 @@ class CustomersService
     public function create(Customer $customer)
     {
         try {
-            $received = $this->endpointCaller->call("POST", "customers", $customer->toArray());
-
-            return data_get($received, 'data');
+            return $this->endpointCaller->call("POST", "customers", $customer->toArray());
         } catch (ClientException $exception) {
             return $exception;
         }
