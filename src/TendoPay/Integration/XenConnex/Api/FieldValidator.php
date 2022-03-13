@@ -37,4 +37,24 @@ class FieldValidator
 
         return $this;
     }
+
+    /**
+     * @throws ValidationException
+     */
+    function withAvailableOptions(string ...$options): FieldValidator
+    {
+        if (is_string($this->value) && ! in_array($this->value, $options)) {
+            throw new ValidationException($this->name.'='.$this->value.' is invalid. Available options: ('.implode(',',
+                    $options).')');
+        } elseif (is_array($this->value)) {
+            foreach ($this->value as $val) {
+                if ( ! in_array($val, $options)) {
+                    throw new ValidationException($this->name.'=['.$val.'] is invalid. Available options: ('.implode(',',
+                            $options).')');
+                }
+            }
+        }
+
+        return $this;
+    }
 }

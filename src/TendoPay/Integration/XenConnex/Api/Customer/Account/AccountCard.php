@@ -4,13 +4,18 @@ namespace TendoPay\Integration\XenConnex\Api\Customer\Account;
 
 class AccountCard extends Account
 {
+    public static function builder(): AccountCard
+    {
+        return new AccountCard();
+    }
+
     private function __construct()
     {
     }
 
     public function withTokenId(string $tokenId): AccountCard
     {
-        $this->filters['token_id'] = $tokenId;
+        $this->addFilter('token_id', $tokenId);
 
         return $this;
     }

@@ -8,9 +8,9 @@ use Psr\Http\Message\ResponseInterface;
 
 class EndpointCaller
 {
-    private $client;
-    private $apiUrl;
-    private $apiKey;
+    private ClientInterface $client;
+    private string $apiUrl;
+    private string $apiKey;
 
     /**
      * @param  ClientInterface  $client
@@ -24,20 +24,22 @@ class EndpointCaller
         $this->client = $client;
     }
 
-    public function call(string $method, $url, array $payload = [])
+    public function call(string $method, $url, array $payload = [], array $headers = [], array $queryParams = [])
     {
-        $options = [
-            "headers" => [
-                "Accept"       => "*/*",
-                "Content-type" => "application/json"
-            ],
-            "auth"    => [
-                $this->apiKey, ""
+        $headers['Accept']       = '*/*';
+        $headers['Content-type'] = 'application/json';
+        $options                 = [
+            'headers' => $headers,
+            'auth'    => [
+                $this->apiKey, ''
             ]
         ];
+        if ( ! empty($queryParams)) {
+            $options['query'] = $queryParams;
+        }
 
         if ( ! empty($payload)) {
-            $options["json"] = $payload;
+            $options['json'] = $payload;
         }
 
         try {

@@ -3,35 +3,63 @@
 namespace TendoPay\Integration\XenConnex\Api\Customer;
 
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
+use TendoPay\Integration\XenConnex\Api\Customer\Constants\BusinessType;
+use TendoPay\Integration\XenConnex\Api\ValidationException;
 
 class BusinessDetail extends BaseFilter
 {
+    /**
+     * @throws ValidationException
+     */
     public static function builder(string $businessName, string $businessType): BusinessDetail
     {
-        return new BusinessDetail(
-            [
-                'business_name' => $businessName,
-                'business_type' => $businessType
-            ]);
+        return new BusinessDetail($businessName, $businessType);
     }
 
-    private function __construct(array $filters)
+    /**
+     * @throws ValidationException
+     */
+    private function __construct(string $businessName, string $businessType)
     {
-        $this->filters = $filters;
+        $this->addFilter('business_name', $businessName)->withMaxLength(255);
+        $this->addFilter('business_type', $businessType)
+             ->withAvailableOptions(
+                 BusinessType::CORPORATION,
+                 BusinessType::SOLE_PROPRIETOR,
+                 BusinessType::PARTNERSHIP,
+                 BusinessType::COOPERATIVE,
+                 BusinessType::TRUST,
+                 BusinessType::NON_PROFIT,
+                 BusinessType::GOVERNMENT);
     }
 
-    public function withDateOfRegistration(string $dateOfRegistration)
+    /**
+     * @throws ValidationException
+     */
+    public function withDateOfRegistration(string $dateOfRegistration): BusinessDetail
     {
-        $this->filters['date_of_registration'] = $dateOfRegistration;
+        $this->addFilter('date_of_registration', $dateOfRegistration)->withMaxLength(10);
+
+        return $this;
     }
 
-    public function withNatureOfBusiness(string $natureOfBusiness)
+    /**
+     * @throws ValidationException
+     */
+    public function withNatureOfBusiness(string $natureOfBusiness): BusinessDetail
     {
-        $this->filters['nature_of_business'] = $natureOfBusiness;
+        $this->addFilter('nature_of_business', $natureOfBusiness)->withMaxLength(255);
+
+        return $this;
     }
 
-    public function withBusinessDomicile(string $businessDomicile)
+    /**
+     * @throws ValidationException
+     */
+    public function withBusinessDomicile(string $businessDomicile): BusinessDetail
     {
-        $this->filters['business_domicile'] = $businessDomicile;
+        $this->addFilter('business_domicile', $businessDomicile)->withMaxLength(2);
+
+        return $this;
     }
 }

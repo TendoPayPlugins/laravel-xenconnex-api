@@ -4,13 +4,18 @@ namespace TendoPay\Integration\XenConnex\Api\Customer\Account;
 
 class AccountQRCode extends Account
 {
+    public static function builder(): AccountQRCode
+    {
+        return new AccountQRCode();
+    }
+
     private function __construct()
     {
     }
 
     public function withQrString(string $qrString): AccountQRCode
     {
-        $this->filters['qr_string'] = $qrString;
+        $this->addFilter('qr_string', $qrString);
 
         return $this;
     }

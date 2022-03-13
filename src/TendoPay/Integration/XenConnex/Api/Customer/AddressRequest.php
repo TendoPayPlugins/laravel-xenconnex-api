@@ -3,57 +3,82 @@
 namespace TendoPay\Integration\XenConnex\Api\Customer;
 
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
+use TendoPay\Integration\XenConnex\Api\ValidationException;
 
 class AddressRequest extends BaseFilter
 {
+    /**
+     * @throws ValidationException
+     */
     public static function builder(string $country): AddressRequest
     {
-        return new AddressRequest(['country' => $country]);
+        return new AddressRequest($country);
     }
 
-    private function __construct(array $filters)
+    /**
+     * @throws ValidationException
+     */
+    private function __construct(string $country)
     {
-        $this->filters = $filters;
+        $this->addFilter('country', $country)->withMaxLength(2);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withCategory(string $category): AddressRequest
     {
-        $this->filters['category'] = $category;
+        $this->addFilter('category', $category)->withMaxLength(255);
 
         return $this;
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withProvinceState(string $provinceState): AddressRequest
     {
-        $this->filters['province_state'] = $provinceState;
+        $this->addFilter('province_state', $provinceState)->withMaxLength(255);
 
         return $this;
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withCity(string $city): AddressRequest
     {
-        $this->filters['city'] = $city;
+        $this->addFilter('city', $city)->withMaxLength(255);
 
         return $this;
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withPostalCode(string $postalCode): AddressRequest
     {
-        $this->filters['postal_code'] = $postalCode;
+        $this->addFilter('postal_code', $postalCode)->withMaxLength(255);
 
         return $this;
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withStreetLine1(string $streetLine1): AddressRequest
     {
-        $this->filters['street_line1'] = $streetLine1;
+        $this->addFilter('street_line1', $streetLine1)->withMaxLength(255);
 
         return $this;
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withType(string $streetLine2): AddressRequest
     {
-        $this->filters['street_line2'] = $streetLine2;
+        $this->addFilter('street_line2', $streetLine2)->withMaxLength(255);
 
         return $this;
     }
@@ -61,7 +86,7 @@ class AddressRequest extends BaseFilter
 
     public function withIsPrimary(bool $isPrimary): AddressRequest
     {
-        $this->filters['is_primary'] = $isPrimary;
+        $this->addFilter('is_primary', $isPrimary);
 
         return $this;
     }

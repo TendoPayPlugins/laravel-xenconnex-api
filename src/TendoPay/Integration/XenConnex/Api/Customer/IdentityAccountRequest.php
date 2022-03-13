@@ -4,6 +4,8 @@ namespace TendoPay\Integration\XenConnex\Api\Customer;
 
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
 use TendoPay\Integration\XenConnex\Api\Customer\Account\Account;
+use TendoPay\Integration\XenConnex\Api\Customer\Constants\IdentityAccountType;
+use TendoPay\Integration\XenConnex\Api\ValidationException;
 
 class IdentityAccountRequest extends BaseFilter
 {
@@ -16,37 +18,47 @@ class IdentityAccountRequest extends BaseFilter
     {
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function withType(string $type): IdentityAccountRequest
     {
-        $this->filters['type'] = $type;
+        $this->addFilter('type', $type)
+             ->withAvailableOptions(
+                 IdentityAccountType::BANK_ACCOUNT,
+                 IdentityAccountType::EWALLET,
+                 IdentityAccountType::CREDIT_CARD,
+                 IdentityAccountType::PAY_LATER,
+                 IdentityAccountType::OTC,
+                 IdentityAccountType::QR_CODE);
 
         return $this;
     }
 
     public function withCompany(string $company): IdentityAccountRequest
     {
-        $this->filters['company'] = $company;
+        $this->addFilter('company', $company);
 
         return $this;
     }
 
     public function withDescription(string $description): IdentityAccountRequest
     {
-        $this->filters['description'] = $description;
+        $this->addFilter('description', $description);
 
         return $this;
     }
 
     public function withCountry(string $country): IdentityAccountRequest
     {
-        $this->filters['country'] = $country;
+        $this->addFilter('country', $country);
 
         return $this;
     }
 
     public function withProperties(Account $properties): IdentityAccountRequest
     {
-        $this->filters['properties'] = $properties->toArray();
+        $this->addFilter('properties', $properties->toArray());
 
         return $this;
     }

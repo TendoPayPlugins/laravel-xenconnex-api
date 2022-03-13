@@ -4,27 +4,32 @@ namespace TendoPay\Integration\XenConnex\Api\Customer\Account;
 
 class AccountEwalletAccount extends Account
 {
+    public static function builder(): AccountEwalletAccount
+    {
+        return new AccountEwalletAccount();
+    }
+
     private function __construct()
     {
     }
 
     public function withAccountNumber(string $accountNumber): AccountEwalletAccount
     {
-        $this->filters['account_number'] = $accountNumber;
+        $this->addFilter('account_number', $accountNumber);
 
         return $this;
     }
 
     public function withAccountHolderName(string $accountHolderName): AccountEwalletAccount
     {
-        $this->filters['account_holder_name'] = $accountHolderName;
+        $this->addFilter('account_holder_name', $accountHolderName);
 
         return $this;
     }
 
     public function withCurrency(string $currency): AccountEwalletAccount
     {
-        $this->filters['currency'] = $currency;
+        $this->addFilter('currency', $currency);
 
         return $this;
     }

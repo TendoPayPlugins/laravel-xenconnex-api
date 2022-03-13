@@ -17,21 +17,22 @@ class EmploymentDetail extends BaseFilter
 
     function withEmployerName(string $employerName): EmploymentDetail
     {
-        $this->filters["employer_name"] = $employerName;
+        $this->addFilter('employer_name', $employerName);
 
         return $this;
     }
 
     public function withNatureOfBusiness(string $natureOfBusiness): EmploymentDetail
     {
-        $this->filters["nature_of_business"] = $natureOfBusiness;
+        $this->addFilter('nature_of_business', $natureOfBusiness);
+
 
         return $this;
     }
 
     public function withRoleDescription(string $roleDescription): EmploymentDetail
     {
-        $this->filters["role_description"] = $roleDescription;
+        $this->addFilter('role_description', $roleDescription);
 
         return $this;
     }

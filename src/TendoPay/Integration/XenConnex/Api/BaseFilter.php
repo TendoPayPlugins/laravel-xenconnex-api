@@ -4,7 +4,7 @@ namespace TendoPay\Integration\XenConnex\Api;
 
 abstract class BaseFilter
 {
-    protected array $filters = [];
+    private array $filters = [];
 
     final public function toArray(): array
     {
