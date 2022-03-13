@@ -5,9 +5,9 @@ namespace TendoPay\Integration\XenConnex;
 use Orchestra\Testbench\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use TendoPay\Integration\XenConnex\Api\Customer\Constants\Gender;
-use TendoPay\Integration\XenConnex\Api\Customer\Customer;
-use TendoPay\Integration\XenConnex\Api\Customer\IndividualDetail;
+use TendoPay\Integration\XenConnex\Api\Customers\Constants\Gender;
+use TendoPay\Integration\XenConnex\Api\Customers\Customer;
+use TendoPay\Integration\XenConnex\Api\Customers\IndividualDetail;
 
 class CustomerServiceTest extends TestCase
 {

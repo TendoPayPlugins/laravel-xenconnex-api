@@ -6,11 +6,7 @@ namespace TendoPay\Integration\XenConnex;
 use Orchestra\Testbench\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use TendoPay\Integration\XenConnex\Api\CustomersService;
 use TendoPay\Integration\XenConnex\Api\EndpointCaller;
-use TendoPay\Integration\XenConnex\Api\IdentityService;
-use TendoPay\Integration\XenConnex\Api\LinkTokensService;
-use TendoPay\Integration\XenConnex\Api\TransactionsService;
 
 class XenConnexServiceProviderTest extends TestCase
 {

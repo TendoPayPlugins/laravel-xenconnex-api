@@ -6,11 +6,7 @@ namespace TendoPay\Integration\XenConnex;
 use GuzzleHttp\Client;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use TendoPay\Integration\XenConnex\Api\CustomersService;
 use TendoPay\Integration\XenConnex\Api\EndpointCaller;
-use TendoPay\Integration\XenConnex\Api\IdentityService;
-use TendoPay\Integration\XenConnex\Api\LinkTokensService;
-use TendoPay\Integration\XenConnex\Api\TransactionsService;
 
 class XenConnexServiceProvider extends ServiceProvider
 {
