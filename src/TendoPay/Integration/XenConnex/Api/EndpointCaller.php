@@ -25,6 +25,9 @@ class EndpointCaller
         $this->client = $client;
     }
 
+    /**
+     * @throws ApiEndpointErrorException
+     */
     public function call(string $method, $url, array $payload = [], array $headers = [], array $queryParams = [])
     {
         $headers['Accept']       = '*/*';
