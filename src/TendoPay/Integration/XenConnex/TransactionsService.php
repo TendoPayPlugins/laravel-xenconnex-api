@@ -22,7 +22,7 @@ class TransactionsService
     {
 
         try {
-            $received = $this->endpointCaller->call('GET', 'transactions', [], [], $params);
+            $received = $this->endpointCaller->call('GET', 'transactions', [], [], $params->getParams());
 
             return data_get($received, 'data');
         } catch (ClientException $exception) {
