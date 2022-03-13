@@ -3,10 +3,10 @@
 namespace TendoPay\Integration\XenConnex\Api\Token;
 
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
+use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 use TendoPay\Integration\XenConnex\Api\Token\Constants\CountryCode;
 use TendoPay\Integration\XenConnex\Api\Token\Constants\InstitutionCode;
 use TendoPay\Integration\XenConnex\Api\Token\Constants\ProductCode;
-use TendoPay\Integration\XenConnex\Api\ValidationException;
 
 class Token extends BaseFilter implements TokenWithCountryCodes, TokenWithInstitutionCodes
 {

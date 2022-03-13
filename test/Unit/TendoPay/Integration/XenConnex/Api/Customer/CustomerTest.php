@@ -4,7 +4,7 @@ namespace TendoPay\Integration\XenConnex\Api\Customer;
 
 use PHPUnit\Framework\TestCase;
 use TendoPay\Integration\XenConnex\Api\Customer\Account\AccountPayLater;
-use TendoPay\Integration\XenConnex\Api\ValidationException;
+use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 
 class CustomerTest extends TestCase
 {

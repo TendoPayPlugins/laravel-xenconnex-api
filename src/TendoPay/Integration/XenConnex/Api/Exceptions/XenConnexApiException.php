@@ -1,6 +1,6 @@
 <?php
 
-namespace TendoPay\Integration\XenConnex\Api;
+namespace TendoPay\Integration\XenConnex\Api\Exceptions;
 
 use Exception;
 

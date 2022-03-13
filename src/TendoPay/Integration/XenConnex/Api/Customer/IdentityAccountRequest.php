@@ -5,7 +5,7 @@ namespace TendoPay\Integration\XenConnex\Api\Customer;
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
 use TendoPay\Integration\XenConnex\Api\Customer\Account\Account;
 use TendoPay\Integration\XenConnex\Api\Customer\Constants\IdentityAccountType;
-use TendoPay\Integration\XenConnex\Api\ValidationException;
+use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 
 class IdentityAccountRequest extends BaseFilter
 {

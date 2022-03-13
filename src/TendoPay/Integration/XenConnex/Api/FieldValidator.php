@@ -3,6 +3,8 @@
 namespace TendoPay\Integration\XenConnex\Api;
 
 
+use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
+
 class FieldValidator
 {
     private string $name;

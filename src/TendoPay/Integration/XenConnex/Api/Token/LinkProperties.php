@@ -3,7 +3,7 @@
 namespace TendoPay\Integration\XenConnex\Api\Token;
 
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
-use TendoPay\Integration\XenConnex\Api\ValidationException;
+use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 
 class LinkProperties extends BaseFilter
 {

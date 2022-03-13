@@ -4,7 +4,7 @@ namespace TendoPay\Integration\XenConnex\Api\Customer;
 
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
 use TendoPay\Integration\XenConnex\Api\Customer\Constants\Gender;
-use TendoPay\Integration\XenConnex\Api\ValidationException;
+use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 
 class IndividualDetail extends BaseFilter
 {
