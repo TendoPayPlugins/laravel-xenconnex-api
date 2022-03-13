@@ -11,7 +11,7 @@
          stopOnFailure="false">
     <php>
         <env name="XENCONNEX_URL" value="https://api-dev.xenconnex.com/v1/"/>
-        <env name="XENCONNEX_API_KEY" value=""/>
+        <env name="XENCONNEX_API_KEY" value="xnc_development_PD9IVTnAl0CSgFSp98pf9EGZwxAaq96YZdDFLNYK6tULLbjMTV2xAN9btEnQIJjVbQkVQ8S9Ap9mAK9aj6mgFS8pviSksg8MfSIMd1rEP39p"/>
     </php>
     <testsuites>
         <testsuite name="XenConnexIntegration">
