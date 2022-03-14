@@ -3,7 +3,7 @@
 namespace TendoPay\Integration\XenConnex\Api;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use TendoPay\Integration\XenConnex\Api\Exceptions\ApiEndpointErrorException;
 
@@ -48,33 +48,17 @@ class EndpointCaller
 
         try {
             $response = $this->client->request($method, $this->apiUrl.$url, $options);
-        } catch (GuzzleException $exception) {
-            $response = $exception->getMessage();
-        }
-        if ($response->getStatusCode() === 200 || $response->getStatusCode() === 201) {
-            return json_decode($response->getBody()->getContents());
-        } else {
-            $this->handleErrors($response);
-            // no return, will throw exception
+            if ($response->getStatusCode() === 200 || $response->getStatusCode() === 201) {
+                return json_decode($response->getBody()->getContents());
+            } else {
+                throw new ApiEndpointErrorException($response->getBody()->getContents());
+            }
+        } catch (ClientException $exception) {
+            $exceptionResult = json_decode($exception->getResponse()->getBody()->getContents());
+            throw new ApiEndpointErrorException(
+                $exceptionResult->message ?? '',
+                $exceptionResult->error_code ?? '',
+                $exceptionResult->errors ?? []);
         }
     }
-
-    /**
-     * @throws ApiEndpointErrorException
-     */
-    private function handleErrors(ResponseInterface $response)
-    {
-        $originalError = json_decode($response->getBody()->getContents());
-        $errorCode     = $originalError->error_code;
-        $message       = $originalError->message;
-        throw new ApiEndpointErrorException(
-            sprintf(
-                "Got error code: %s, error class: %s. Message: %s",
-                $response->getStatusCode(),
-                $errorCode,
-                $message
-            )
-        );
-    }
-
 }
