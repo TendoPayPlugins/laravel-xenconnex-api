@@ -19,6 +19,18 @@ class FieldValidator
     /**
      * @throws ValidationException
      */
+    function withNotEmptyValue(): FieldValidator
+    {
+        if (empty($this->value)) {
+            throw new ValidationException($this->name.' is invalid. It should not be empty.');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @throws ValidationException
+     */
     function withMaxLength(int $maxLength): FieldValidator
     {
         if (is_string($this->value) && strlen($this->value) > $maxLength) {

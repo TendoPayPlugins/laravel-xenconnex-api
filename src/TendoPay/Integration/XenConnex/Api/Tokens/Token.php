@@ -51,9 +51,11 @@ class Token extends BaseFilter implements TokenWithCountryCodes, TokenWithInstit
             $customerId)->withRegexCheck('/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/');
         $this->addFilter('product_codes', $productCodes)
              ->withAvailableOptions(
-                 ProductCode::TRANSACTION);
+                 ProductCode::TRANSACTION)
+             ->withNotEmptyValue();
 
-        $this->addFilter('properties', $properties);
+        $this->addFilter('properties', $properties->toArray())
+             ->withNotEmptyValue();
     }
 
     /**
@@ -62,6 +64,7 @@ class Token extends BaseFilter implements TokenWithCountryCodes, TokenWithInstit
     public function withCountryCodes(array $countryCodes): Token
     {
         $this->addFilter('country_codes', $countryCodes)
+             ->withNotEmptyValue()
              ->withAvailableOptions(
                  CountryCode::ID,
                  CountryCode::PH);
@@ -75,6 +78,7 @@ class Token extends BaseFilter implements TokenWithCountryCodes, TokenWithInstit
     public function withInstitutionCodes(array $institutionCodes): Token
     {
         $this->addFilter('institution_codes', $institutionCodes)
+             ->withNotEmptyValue()
              ->withAvailableOptions(
                  InstitutionCode::ID_BCA,
                  InstitutionCode::ID_BCA_CORPORATE,
