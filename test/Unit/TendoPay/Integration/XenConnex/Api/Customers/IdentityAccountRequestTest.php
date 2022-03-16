@@ -4,7 +4,6 @@ namespace TendoPay\Integration\XenConnex\Api\Customers;
 
 use PHPUnit\Framework\TestCase;
 use TendoPay\Integration\XenConnex\Api\Customers\Account\AccountPayLater;
-use TendoPay\Integration\XenConnex\Api\Customers\Constants\Gender;
 use TendoPay\Integration\XenConnex\Api\Customers\Constants\IdentityAccountType;
 use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 

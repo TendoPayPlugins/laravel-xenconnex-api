@@ -3,7 +3,6 @@
 namespace TendoPay\Integration\XenConnex\Api\Customers;
 
 use PHPUnit\Framework\TestCase;
-use TendoPay\Integration\XenConnex\Api\Customers\Constants\Gender;
 use TendoPay\Integration\XenConnex\Api\Customers\Constants\KYCDocumentSubType;
 use TendoPay\Integration\XenConnex\Api\Customers\Constants\KYCDocumentType;
 use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
@@ -73,6 +72,11 @@ class KYCDocumentRequestTest extends TestCase
 
     public function validIndividualDetails(): array
     {
-        return [['EN', KYCDocumentType::BIRTH_CERTIFICATE, KYCDocumentSubType::VOTER_ID, '', '1234', '12-03-1990', 'Holder']];
+        return [
+            [
+                'EN', KYCDocumentType::BIRTH_CERTIFICATE, KYCDocumentSubType::VOTER_ID, '', '1234', '12-03-1990',
+                'Holder'
+            ]
+        ];
     }
 }
