@@ -4,7 +4,6 @@ namespace TendoPay\Integration\XenConnex\Api;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
-use Psr\Http\Message\ResponseInterface;
 use TendoPay\Integration\XenConnex\Api\Exceptions\ApiEndpointErrorException;
 
 class EndpointCaller
@@ -48,10 +47,11 @@ class EndpointCaller
 
         try {
             $response = $this->client->request($method, $this->apiUrl.$url, $options);
-            if ($response->getStatusCode() === 200 || $response->getStatusCode() === 201) {
+            if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
                 return json_decode($response->getBody()->getContents());
             } else {
-                throw new ApiEndpointErrorException($response->getBody()->getContents());
+                throw new ApiEndpointErrorException($response->getBody()->getContents(),
+                    'Status code: '.$response->getStatusCode());
             }
         } catch (ClientException $exception) {
             $exceptionResult = json_decode($exception->getResponse()->getBody()->getContents());

@@ -76,7 +76,7 @@ class AddressRequest extends BaseFilter
     /**
      * @throws ValidationException
      */
-    public function withType(string $streetLine2): AddressRequest
+    public function withStreetLine2(string $streetLine2): AddressRequest
     {
         $this->addFilter('street_line2', $streetLine2)->withMaxLength(255);
 
