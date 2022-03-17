@@ -2,7 +2,6 @@
 
 namespace TendoPay\Integration\XenConnex;
 
-use GuzzleHttp\Exception\ClientException;
 use TendoPay\Integration\XenConnex\Api\EndpointCaller;
 
 class IdentityService
@@ -19,12 +18,6 @@ class IdentityService
      */
     public function get(string $linkTokenId)
     {
-        try {
-            $received = $this->endpointCaller->call('GET', sprintf('identity/%s', $linkTokenId));
-
-            return data_get($received, 'data');
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call('GET', 'identity', [], [], ['link_token_id' => $linkTokenId]);
     }
 }

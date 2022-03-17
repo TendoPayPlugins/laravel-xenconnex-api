@@ -76,6 +76,10 @@ class KYCDocumentRequestTest extends TestCase
             [
                 'EN', KYCDocumentType::BIRTH_CERTIFICATE, KYCDocumentSubType::VOTER_ID, '', '1234', '12-03-1990',
                 'Holder'
+            ],
+            [
+                'ND', KYCDocumentType::VISA, KYCDocumentSubType::CONSULAR_ID, '', '1234', '12-03-1990',
+                'Holder'
             ]
         ];
     }

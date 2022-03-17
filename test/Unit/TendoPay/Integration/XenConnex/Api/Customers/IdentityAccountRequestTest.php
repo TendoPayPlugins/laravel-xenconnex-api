@@ -56,6 +56,9 @@ class IdentityAccountRequestTest extends TestCase
 
     public function validIdentityAccountRequest(): array
     {
-        return [[IdentityAccountType::BANK_ACCOUNT, 'Surname', 'Description', 'England']];
+        return [
+            [IdentityAccountType::BANK_ACCOUNT, 'Surname', 'Description', 'England'],
+            [IdentityAccountType::OTC, 'Surname', 'Description', null]
+        ];
     }
 }

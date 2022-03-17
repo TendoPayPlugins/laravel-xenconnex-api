@@ -85,6 +85,9 @@ class CustomerTest extends TestCase
         if (isset($kycDocuments)) {
             $builder = $builder->withKYCDocuments(...$kycDocuments);
         }
+        if (isset($metadata)) {
+            $builder = $builder->withMetadata($metadata);
+        }
         self::assertEquals($expected, $builder->toArray());
     }
 
@@ -160,7 +163,8 @@ class CustomerTest extends TestCase
                                 ['account_id' => '1234']
                         ]
                     ],
-                    'kyc_documents'     => [['document_name' => 'document']]
+                    'kyc_documents'     => [['document_name' => 'document']],
+                    'metadata'          => ['data' => 'meta']
                 ], 'ff417ee0-a2e8-45ec-b959-1242ac154302', null, 'test@as.as', null, null,
                 IndividualDetail::builder('Given Names James'),
                 BusinessDetail::builder('company', 'CORPORATION'),
@@ -172,7 +176,7 @@ class CustomerTest extends TestCase
                                                                           ->withAccountId('1234'))
                 ],
                 [KYCDocumentRequest::builder()->withDocumentName('document')],
-                null
+                ['data' => 'meta']
             ],
         ];
     }

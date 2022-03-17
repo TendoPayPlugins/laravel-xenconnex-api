@@ -2,7 +2,6 @@
 
 namespace TendoPay\Integration\XenConnex;
 
-use GuzzleHttp\Exception\ClientException;
 use TendoPay\Integration\XenConnex\Api\EndpointCaller;
 use TendoPay\Integration\XenConnex\Api\Tokens\Token;
 
@@ -20,13 +19,7 @@ class LinkTokensService
      */
     public function create(Token $token)
     {
-        try {
-            $received = $this->endpointCaller->call('POST', 'link_tokens', $token->toArray());
-
-            return data_get($received, 'data');
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call('POST', 'link_tokens', $token->toArray());
     }
 
     /**
@@ -34,14 +27,8 @@ class LinkTokensService
      */
     public function getDetails(string $linkTokenId, string $businessId)
     {
-        try {
-            $received = $this->endpointCaller->call('GET', sprintf('link_tokens/%s', $linkTokenId),
-                [], ['business-id' => $businessId]);
-
-            return data_get($received, 'data');
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call('GET', sprintf('link_tokens/%s', $linkTokenId),
+            [], ['business-id' => $businessId]);
     }
 
     /**
@@ -49,12 +36,6 @@ class LinkTokensService
      */
     public function invalidate(string $linkTokenId)
     {
-        try {
-            $received = $this->endpointCaller->call('DELETE', sprintf('link_tokens/%s', $linkTokenId));
-
-            return data_get($received, 'data');
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call('DELETE', sprintf('link_tokens/%s', $linkTokenId));
     }
 }

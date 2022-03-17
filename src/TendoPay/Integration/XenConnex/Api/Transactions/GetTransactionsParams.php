@@ -39,10 +39,10 @@ class GetTransactionsParams
             $params['offset'] = $this->offset;
         }
         if (isset($this->startDate)) {
-            $params['startDate'] = $this->startDate;
+            $params['start_date'] = $this->startDate;
         }
         if (isset($this->endDate)) {
-            $params['endDate'] = $this->endDate;
+            $params['end_date'] = $this->endDate;
         }
 
         return $params;

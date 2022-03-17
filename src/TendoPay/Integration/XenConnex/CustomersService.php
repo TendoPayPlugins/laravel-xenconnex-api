@@ -2,7 +2,6 @@
 
 namespace TendoPay\Integration\XenConnex;
 
-use GuzzleHttp\Exception\ClientException;
 use TendoPay\Integration\XenConnex\Api\Customers\Customer;
 use TendoPay\Integration\XenConnex\Api\EndpointCaller;
 
@@ -20,10 +19,6 @@ class CustomersService
      */
     public function create(Customer $customer)
     {
-        try {
-            return $this->endpointCaller->call("POST", "customers", $customer->toArray());
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call("POST", "customers", $customer->toArray());
     }
 }

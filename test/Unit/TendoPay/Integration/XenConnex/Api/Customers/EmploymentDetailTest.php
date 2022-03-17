@@ -40,6 +40,9 @@ class EmploymentDetailTest extends TestCase
 
     public function validIdentityAccountRequest(): array
     {
-        return [['Name', 'Nature', 'The Role']];
+        return [
+            ['Name', 'Nature', 'The Role'],
+            ['Name', 'Nature', null]
+        ];
     }
 }

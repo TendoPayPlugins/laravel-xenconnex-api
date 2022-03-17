@@ -62,6 +62,9 @@ class IndividualDetailTest extends TestCase
 
     public function validIndividualDetails(): array
     {
-        return [['Name', 'Surname', Gender::MALE, '12-03-1990', 'EN', 'England']];
+        return [
+            ['Name', 'Surname', Gender::MALE, '12-03-1990', 'EN', 'England'],
+            ['Name', 'Surname', Gender::OTHER, null, 'EN', 'England'],
+            ['Name', 'Surname', Gender::FEMALE, '12-03-1990', 'EN', null]];
     }
 }

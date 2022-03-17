@@ -2,7 +2,6 @@
 
 namespace TendoPay\Integration\XenConnex;
 
-use GuzzleHttp\Exception\ClientException;
 use TendoPay\Integration\XenConnex\Api\EndpointCaller;
 use TendoPay\Integration\XenConnex\Api\Transactions\GetTransactionsParams;
 
@@ -18,16 +17,10 @@ class TransactionsService
     /**
      * @throws Api\Exceptions\ApiEndpointErrorException
      */
-    public function get(GetTransactionsParams $params)
+    public function get(string $linkTokenId, GetTransactionsParams $params = null)
     {
-
-        try {
-            $received = $this->endpointCaller->call('GET', 'transactions', [], [], $params->getParams());
-
-            return data_get($received, 'data');
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call('GET', 'transactions', [], ['link-token-id' => $linkTokenId],
+            isset($params) ? $params->getParams() : []);
     }
 
     /**
@@ -35,12 +28,6 @@ class TransactionsService
      */
     public function refresh(string $linkTokenId)
     {
-        try {
-            $received = $this->endpointCaller->call('GET', 'transactions', [], ['link-token-id' => $linkTokenId]);
-
-            return data_get($received, 'data');
-        } catch (ClientException $exception) {
-            return $exception;
-        }
+        return $this->endpointCaller->call('GET', 'transactions', [], ['link-token-id' => $linkTokenId]);
     }
 }

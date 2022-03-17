@@ -3,7 +3,9 @@
 namespace TendoPay\Integration\XenConnex\Api;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use TendoPay\Integration\XenConnex\Api\Exceptions\ApiEndpointErrorException;
 
 class EndpointCaller
@@ -53,7 +55,7 @@ class EndpointCaller
                 throw new ApiEndpointErrorException($response->getBody()->getContents(),
                     'Status code: '.$response->getStatusCode());
             }
-        } catch (ClientException $exception) {
+        } catch (BadResponseException $exception) {
             $exceptionResult = json_decode($exception->getResponse()->getBody()->getContents());
             throw new ApiEndpointErrorException(
                 $exceptionResult->message ?? '',
