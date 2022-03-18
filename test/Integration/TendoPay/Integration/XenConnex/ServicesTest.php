@@ -16,9 +16,7 @@ use TendoPay\Integration\XenConnex\Api\Transactions\GetTransactionsParams;
 
 class ServicesTest extends TestCase
 {
-    //'cust-e1634e54-f7f6-4361-ab01-e3c354dd61fe'
     private static string $customerId;
-    //'lt-96530a62-e918-44ba-aa47-722fd2d4b828'
     private static string $tokenId;
 
     protected function getPackageProviders($app): array
