@@ -1,6 +1,6 @@
 {
-  "name": "tendopay/laravel-saltedge-api",
-  "description": "SaltEdge API Integration",
+  "name": "tendopay/laravel-xenconnex-api",
+  "description": "Xenconnex API Integration",
   "type": "library",
   "authors": [
     {
