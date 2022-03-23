@@ -18,6 +18,6 @@ class IdentityService
      */
     public function get(string $linkTokenId)
     {
-        return $this->endpointCaller->call('GET', 'identity', [], [], ['link_token_id' => $linkTokenId]);
+        return $this->endpointCaller->call('GET', '/identity', [], [], ['link_token_id' => $linkTokenId]);
     }
 }

@@ -19,6 +19,6 @@ class CustomersService
      */
     public function create(Customer $customer)
     {
-        return $this->endpointCaller->call("POST", "customers", $customer->toArray());
+        return $this->endpointCaller->call("POST", "/customers", $customer->toArray());
     }
 }

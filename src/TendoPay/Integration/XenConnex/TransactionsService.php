@@ -19,7 +19,7 @@ class TransactionsService
      */
     public function get(string $linkTokenId, GetTransactionsParams $params = null)
     {
-        return $this->endpointCaller->call('GET', 'transactions', [], ['link-token-id' => $linkTokenId],
+        return $this->endpointCaller->call('GET', '/transactions', [], ['link-token-id' => $linkTokenId],
             isset($params) ? $params->getParams() : []);
     }
 
@@ -28,6 +28,6 @@ class TransactionsService
      */
     public function refresh(string $linkTokenId)
     {
-        return $this->endpointCaller->call('GET', 'transactions', [], ['link-token-id' => $linkTokenId]);
+        return $this->endpointCaller->call('GET', '/transactions', [], ['link-token-id' => $linkTokenId]);
     }
 }

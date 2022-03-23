@@ -19,7 +19,7 @@ class LinkTokensService
      */
     public function create(Token $token)
     {
-        return $this->endpointCaller->call('POST', 'link_tokens', $token->toArray());
+        return $this->endpointCaller->call('POST', '/link_tokens', $token->toArray());
     }
 
     /**
@@ -27,7 +27,7 @@ class LinkTokensService
      */
     public function getDetails(string $linkTokenId, string $businessId)
     {
-        return $this->endpointCaller->call('GET', sprintf('link_tokens/%s', $linkTokenId),
+        return $this->endpointCaller->call('GET', sprintf('/link_tokens/%s', $linkTokenId),
             [], ['business-id' => $businessId]);
     }
 
@@ -36,6 +36,6 @@ class LinkTokensService
      */
     public function invalidate(string $linkTokenId)
     {
-        return $this->endpointCaller->call('DELETE', sprintf('link_tokens/%s', $linkTokenId));
+        return $this->endpointCaller->call('DELETE', sprintf('/link_tokens/%s', $linkTokenId));
     }
 }
