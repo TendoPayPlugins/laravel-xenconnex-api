@@ -9,7 +9,7 @@ class ApiEndpointErrorException extends XenConnexApiException
 
     public function __construct(string $message = '', string $xenConnexErrorCode = '', array $errors = [])
     {
-        parent::__construct('['.$xenConnexErrorCode.'] '.$message.' '.json_encode($errors));
+        parent::__construct('['.$xenConnexErrorCode.'] '.$message.' '.json_encode($errors, JSON_PRETTY_PRINT));
         $this->xenConnexErrorCode = $xenConnexErrorCode;
         $this->errors             = $errors;
     }
