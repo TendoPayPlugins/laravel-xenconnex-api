@@ -65,6 +65,7 @@ class TokenTest extends TestCase
         if ($countryCodes !== null) {
             $builder->withCountryCodes($countryCodes);
         }
+        $builder->toArray();
     }
 
     public function validTokens(): array
@@ -129,6 +130,12 @@ class TokenTest extends TestCase
                 $this->validLinkProperties,
                 [InstitutionCode::ID_BCA],
                 ['unknown']
+            ], [
+                '00000000-1111-2222-3333-444444444444',
+                [ProductCode::TRANSACTION],
+                $this->validLinkProperties,
+                null,
+                null
             ]
         ];
     }

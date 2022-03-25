@@ -5,37 +5,18 @@ namespace TendoPay\Integration\XenConnex\Api\Customers;
 use TendoPay\Integration\XenConnex\Api\BaseFilter;
 use TendoPay\Integration\XenConnex\Api\Exceptions\ValidationException;
 
-class Customer extends BaseFilter implements CustomerWithMobile, CustomerWithEmail
+class Customer extends BaseFilter
 {
 
     /**
      * @param  string  $referenceId
      *
-     * @return CustomerWithEmail|CustomerWithMobile
+     * @return Customer
      * @throws ValidationException
      */
-    public static function builder(string $referenceId)
+    public static function builder(string $referenceId): Customer
     {
-        $customer = new Customer($referenceId);
-
-        return new class($customer) implements CustomerWithEmail, CustomerWithMobile {
-            private Customer $customer;
-
-            public function __construct(Customer $customer)
-            {
-                $this->customer = $customer;
-            }
-
-            public function withEmail(string $email): Customer
-            {
-                return $this->customer->withEmail($email);
-            }
-
-            public function withMobileNumber(string $mobileNumber): Customer
-            {
-                return $this->customer->withMobileNumber($mobileNumber);
-            }
-        };
+        return new Customer($referenceId);
     }
 
     /**
@@ -45,6 +26,8 @@ class Customer extends BaseFilter implements CustomerWithMobile, CustomerWithEma
     {
         $this->addFilter('reference_id', $referenceId)->withMaxLength(255);
         $this->addFilter('type', 'INDIVIDUAL');
+        $this->addRequiredFieldsOption(['mobile_number']);
+        $this->addRequiredFieldsOption(['email']);
     }
 
     /**

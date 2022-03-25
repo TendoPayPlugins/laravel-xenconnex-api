@@ -8,38 +8,19 @@ use TendoPay\Integration\XenConnex\Api\Tokens\Constants\CountryCode;
 use TendoPay\Integration\XenConnex\Api\Tokens\Constants\InstitutionCode;
 use TendoPay\Integration\XenConnex\Api\Tokens\Constants\ProductCode;
 
-class Token extends BaseFilter implements TokenWithCountryCodes, TokenWithInstitutionCodes
+class Token extends BaseFilter
 {
     /**
      * @param  string  $customerId
      * @param  array  $productCodes
      * @param  LinkProperties  $properties
      *
-     * @return TokenWithCountryCodes|TokenWithInstitutionCodes
+     * @return Token
      * @throws ValidationException
      */
-    public static function builder(string $customerId, array $productCodes, LinkProperties $properties)
+    public static function builder(string $customerId, array $productCodes, LinkProperties $properties): Token
     {
-        $token = new Token($customerId, $productCodes, $properties);
-
-        return new class($token) implements TokenWithCountryCodes, TokenWithInstitutionCodes {
-            private Token $token;
-
-            public function __construct(Token $token)
-            {
-                $this->token = $token;
-            }
-
-            public function withCountryCodes(array $countryCodes): Token
-            {
-                return $this->token->withCountryCodes($countryCodes);
-            }
-
-            public function withInstitutionCodes(array $institutionCodes): Token
-            {
-                return $this->token->withInstitutionCodes($institutionCodes);
-            }
-        };
+        return new Token($customerId, $productCodes, $properties);
     }
 
     /**
@@ -56,6 +37,9 @@ class Token extends BaseFilter implements TokenWithCountryCodes, TokenWithInstit
 
         $this->addFilter('properties', $properties->toArray())
              ->withNotEmptyValue();
+
+        $this->addRequiredFieldsOption(['country_codes']);
+        $this->addRequiredFieldsOption(['institution_codes']);
     }
 
     /**
