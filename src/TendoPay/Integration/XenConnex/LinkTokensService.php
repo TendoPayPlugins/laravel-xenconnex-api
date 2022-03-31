@@ -25,10 +25,14 @@ class LinkTokensService
     /**
      * @throws Api\Exceptions\ApiEndpointErrorException
      */
-    public function getDetails(string $linkTokenId, string $businessId)
+    public function getDetails(string $linkTokenId, string $businessId = null)
     {
+        $headers = [];
+        if (!empty($businessId)) {
+            $headers = ['business-id' => $businessId];
+        }
         return $this->endpointCaller->call('GET', sprintf('/link_tokens/%s', $linkTokenId),
-            [], ['business-id' => $businessId]);
+            [], $headers);
     }
 
     /**
